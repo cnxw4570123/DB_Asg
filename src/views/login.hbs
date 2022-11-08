@@ -1,0 +1,56 @@
+<style>
+    body {
+        height: 75vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .frame {
+        border-radius: 15px;
+        box-sizing: border-box;
+        border: 1px solid #757575;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 350px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #id,
+    #password,
+    .btn {
+        font-size: 25px;
+    }
+
+    .btn {
+        width: 322px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="frame">
+    <h1>로그인</h1>
+    <form action="/" id="department" method="post">
+        <div class="type">
+            <input type="radio" name="type" id="">교직원</input>
+            <input type="radio" name="type" id="">학생</input>
+        </div>
+        <div class="id">
+            <input type="text" id="id" name="id" required="required" placeholder="아이디">
+        </div>
+        <div class="pwd">
+            <input type="password" id="pwd" name="password" required="required" placeholder="비밀번호">
+        </div>
+        <button class="button" type="submit">로그인</button>
+    </form>
+</div>

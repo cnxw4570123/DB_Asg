@@ -1,82 +1,4 @@
-<h1>{{ title }}</h1>
-<table>
-    <tr>
-        <td>Bno</td>
-        <td>Bname</td>
-    </tr>
-    {{#each building}}
-    <tr>
-        <td>{{BNO}}</td>
-        <td>{{BNAME}}</td>
-    </tr>
-    {{/each}}
-</table>
-<br>
-<hr>
-<h1> {{ title2 }}</h1>
-<table>
-    <tr>
-        <td>RNO</td>
-        <td>Rname</td>
-        <td>Rcapacity</td>
-        <td>R_Bno</td>
-    </tr>
-    {{#each room}}
-    <tr>
-        <td>{{RNO}}</td>
-        <td>{{RNAME}}</td>
-        <td>{{RCAPACITY}}</td>
-        <td>{{R_BNO}}</td>
-    </tr>
-    {{/each}}
-</table>
-<br>
-<hr>
-<h1>{{ title3 }}</h1>
-<table>
-    <tr>
-        <td>Dno</td>
-        <td>Dname</td>
-        <td>Demail</td>
-        <td>Dphnum</td>
-        <td>D_Rno</td>
-    </tr>
-    {{#each department}}
-    <tr>
-        <td>{{DNO}}</td>
-        <td>{{DNAME}}</td>
-        <td>{{DEMAIL}}</td>
-        <td>{{DPHNUM}}</td>
-        <td>{{D_RNO}}</td>
-    </tr>
-    {{/each}}
-</table>
-<br>
-<hr>
-<h1>{{ title4 }}</h1>
-<table>
-    <tr>
-        <td>Cid</td>
-        <td>Cname</td>
-        <td>Professor</td>
-        <td>Numofptcs</td>
-        <td>C_Dno</td>
-        <td>C_Rno</td>
-    </tr>
-    {{#each classInfo}}
-    <tr>
-        <td>{{CID}}</td>
-        <td>{{CNAME}}</td>
-        <td>{{PROFESSOR}}</td>
-        <td>{{NUMOFPTCS}}</td>
-        <td>{{C_DNO}}</td>
-        <td>{{C_RNO}}</td>
-    </tr>
-    {{/each}}
-</table>
-<br>
-<hr>
-<h1> {{ title5 }}</h1>
+<h1> {{ title }}</h1>
 <table>
     <tr>
         <td>STUID</td>
@@ -99,9 +21,53 @@
     </tr>
     {{/each}}
 </table>
+<h1>{{ title2 }}</h1>
+<table>
+    <tr>
+        <td>Dno</td>
+        <td>Dname</td>
+        <td>Demail</td>
+        <td>Dphnum</td>
+        <td>D_Rno</td>
+    </tr>
+    {{#each department}}
+    <tr>
+        <td>{{DNO}}</td>
+        <td>{{DNAME}}</td>
+        <td>{{DEMAIL}}</td>
+        <td>{{DPHNUM}}</td>
+        <td>{{D_RNO}}</td>
+    </tr>
+    {{/each}}
+</table>
 <br>
 <hr>
-<h1>{{title6}}</h1>
+<h1>{{ title3 }}</h1>
+<table>
+    <tr>
+        <td>Cid</td>
+        <td>Cname</td>
+        <td>Professor</td>
+        <td>Numofptcs</td>
+        <td>C_Dno</td>
+        <td>C_Rno</td>
+    </tr>
+    {{#each classInfo}}
+    <tr>
+        <td>{{CID}}</td>
+        <td>{{CNAME}}</td>
+        <td>{{PROFESSOR}}</td>
+        <td>{{NUMOFPTCS}}</td>
+        <td>{{C_DNO}}</td>
+        <td>{{C_RNO}}</td>
+    </tr>
+    {{/each}}
+</table>
+<br>
+<hr>
+<br>
+<hr>
+<h1>{{title4}}</h1>
 <table>
     <tr>
         <td>Clid</td>
