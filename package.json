@@ -1,7 +1,7 @@
 {
-  "name": "week09",
+  "name": "week10",
   "version": "1.0.0",
-  "description": "week09 asg",
+  "description": "week10 asg",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node ./src/index.js"
@@ -19,5 +19,13 @@
     "@babel/node": "^7.19.1",
     "@babel/preset-env": "^7.19.1",
     "nodemon": "^2.0.20"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnxw4570123/DB_Asg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cnxw4570123/DB_Asg/issues"
+  },
+  "homepage": "https://github.com/cnxw4570123/DB_Asg#readme"
 }
