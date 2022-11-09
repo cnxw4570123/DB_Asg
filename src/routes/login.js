@@ -1,4 +1,3 @@
-import e from "express";
 import express from "express";
 import { selectSql } from "../database/sql";
 
@@ -14,21 +13,24 @@ router.post('/', async (req, res)=> {
     const employee = await selectSql.getEmployee();
     let whoAmI = '';
     let checkLogin = false;
-    console.log(vars.type);
-
-    if(vars.type == '학생'){
+    console.log(vars.type === 'employee');
+    console.log(vars.password);
+    if(vars.type == 'students'){
         students.map((student) => {
             console.log(student.stuid);
-            if(vars.id === student.stuid && vars.pw === student.spw){
+            if(vars.id === student.STUID && vars.password === student.SPW){
                 console.log('login success!');
                 checkLogin = true;
                 whoAmI = 'student';
+            } else{
+                console.log('login failed!');
+                res.send("<script> alert('로그인에 실패 했습니다.); location.href ='/';</script>");
             }
         })
     } else {
         employee.map((emp)=> {
-            console.log(emp.empid);
-            if(vars.id === emp.empid && vars.pw === emp.epw){
+            console.log(emp.EMPID);
+            if(vars.id === emp.EMPID && vars.password === emp.EPW){
                 console.log('login sucess!');
                 if(emp.emppos === 'admin'){
                     whoAmI = 'admin';
@@ -37,16 +39,15 @@ router.post('/', async (req, res)=> {
                 }
             }
         })
-
+    }
         if(checkLogin && whoAmI === 'admin'){
             res.redirect('/delete');
-        } else if(checkLogin && whoAmI === 'student'){
+        } else if(checkLogin && whoAmI === 'user' || whoAmI === 'student'){
             res.redirect('/select');
         } else{
             console.log('login failed!');
-            res.redirect("<script> alert('로그인에 실패 했습니다.); location.href ='/'l;</script>");
+            res.send("<script> alert('로그인에 실패 했습니다.); location.href ='/';</script>");
         }
-    }
 })
 
 module.exports = router;
