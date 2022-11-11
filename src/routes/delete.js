@@ -3,8 +3,8 @@ import { selectSql, deleteSql } from "../database/sql";
 
 const router = express.Router();
 
-router.get('/', async( req, res)=> {
-    const students = await selectSql.getStudents();
+router.get('/', async (req, res) => {
+    const students = await selectSql.getStudentsForDel();
 
     res.render('delete', {
         title: "삭제 가능",
@@ -12,11 +12,11 @@ router.get('/', async( req, res)=> {
     })
 });
 
-router.post('/', async (req, res)=>{
+router.post('/', async (req, res) => {
     console.log('delete Router : ', req.body.delBtn);
 
     const data = {
-        stuid : req.body.delBtn,
+        stuid: req.body.delBtn,
     };
 
     await deleteSql.deleteStudents(data);
