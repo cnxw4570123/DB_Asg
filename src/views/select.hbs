@@ -1,6 +1,5 @@
-{{#if isEmployee}}
-{{!-- 직원이면에 해당하는 코드 --}}
 <h1>{{title}}</h1>
+
 <table>
     <tr>
         <td>EMPID</td>
@@ -19,45 +18,3 @@
     </tr>
     {{/each}}
 </table>
-
-{{else}}
-{{!-- 학생이면에 해당하는 코드 --}}
-<h1>{{title}}</h1>
-<table>
-    <tr>
-        <td>STUID</td>
-        <td>SNO</td>
-        <td>SPW</td>
-        <td>SNAME</td>
-        <td>SEMAIL</td>
-        <td>SPHNUM</td>
-        <td>DNAME</td>
-        <td>CLNAME</td>
-    </tr>
-    {{#each students}}
-    <tr>
-        <td>{{STUID}}</td>
-        <td>{{SNO}}</td>
-        <td>{{SPW}}</td>
-        <td>{{SNAME}}</td>
-        <td>{{SEMAIL}}</td>
-        <td>{{SPHNUM}}</td>
-        <td>{{DNAME}}</td>
-        <td>{{CLNAME}}</td>
-    </tr>
-    {{/each}}
-</table>
-<h1>{{title2}}</h1>
-<table>
-    <tr>
-        <td>CID</td>
-        <td>CNAME</td>
-    </tr>
-    {{#each classInfo}}
-    <tr>
-        <td>{{CID}}</td>
-        <td>{{CNAME}}</td>
-    </tr>
-    {{/each}}
-</table>
-{{/if}}
