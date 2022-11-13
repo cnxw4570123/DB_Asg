@@ -18,12 +18,8 @@ export const selectSql = {
     // 학생 or 직원에 맞는 정보 출력하도록 join 학생 -> 동아리 정보, 학과 정보같이 출력; 수강정보는 따로 본인 수강 테이블
     // 직원 -> 부서정보 join
     // admin용 모든 학생 조회
-    getClub: async (id) => {
-        const [rows] = await promisePool.query(`SELECT * FROM CLUB WHERE CL_PRESIDENT = ${id}`);
-        return rows;
-    },
-    getClassInfo: async (id) => {
-        const [rows] = await promisePool.query(`SELECT * FROM PARTICIPATE_IN WHERE PSTUID = ${id}`);
+    getClassInfo: async () => {
+        const [rows] = await promisePool.query(`SELECT STUID, SNO, SNAME, CID, CNAME FROM PARTICIPATE_IN, CLASS, STUDENTS  WHERE PSTUID = STUID AND PCID = CID`);
         return rows;
     },
     getStudents: async () => {
@@ -50,25 +46,9 @@ export const selectSql = {
 };
 
 export const deleteSql = {
-    // 학생, 동아리 삭제 가능하게
-    deleteStudents: async (data) => {
-        console.log("deleteSql.deleteStudents:" + data.stuid);
-        const sql = `delete from students where STUID = ${data.stuid} `;
 
-        await promisePool.query(sql);
-    },
-
-    deleteParIn: async (id) => {
-        const sql = `DELETE FROM PARTICIPATE_IN WHERE PSTUID = ${id}`;
-
-        await promisePool.query(sql);
-    }
-}
-
-export const updateSql = {
-
-    updateClub: async (id) => {
-        const sql = `UPDATE CLUB SET CL_PRESIDENT = NULL WHERE CL_PRESIDENT = ${id}`;
+    deleteParIn: async (data) => {
+        const sql = `DELETE FROM PARTICIPATE_IN WHERE PSTUID = ${data.stuid}`;
 
         await promisePool.query(sql);
     }

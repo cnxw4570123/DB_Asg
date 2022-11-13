@@ -2,26 +2,18 @@
 
 <table>
     <tr>
-        <td>STUID</td>
-        <td>Spw</td>
         <td>Sno</td>
-        <td>Name</td>
-        <td>Email</td>
-        <td>phone Number</td>
-        <td>Major</td>
-        <td>CLUB ID</td>
+        <td>SNAME</td>
+        <td>CID</td>
+        <td>CNAME</td>
     </tr>
-    {{#each students}}
+    {{#each part_in}}
     <form method="post" action="/delete">
         <tr>
-            <td>{{STUID}}</td>
-            <td>{{SPW}}</td>
             <td>{{SNO}}</td>
             <td>{{SNAME}}</td>
-            <td>{{SEMAIL}}</td>
-            <td>{{SPHNUM}}</td>
-            <td>{{DNAME}}</td>
-            <td>{{CLNAME}}</td>
+            <td>{{CID}}</td>
+            <td>{{CNAME}}</td>
             <td style="border: none; margin-left: 10px;">
                 <button style="margin-left: 10px;" name="delBtn" value="{{STUID}}">
                     삭제

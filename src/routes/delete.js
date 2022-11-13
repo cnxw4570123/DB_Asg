@@ -3,11 +3,11 @@ import { selectSql, deleteSql, updateSql } from "../database/sql";
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const students = await selectSql.getStudents();
+    const part_in = await selectSql.getClassInfo();
 
     res.render('delete', {
         title: "삭제 가능",
-        students
+        part_in
     })
 });
 
@@ -17,19 +17,8 @@ router.post('/', async (req, res) => {
     const data = {
         stuid: req.body.delBtn,
     };
-    const participate_in = selectSql.getClassInfo(data.stuid);
-    const club = selectSql.getClub(data.stuid);
 
-    if (participate_in != null) {
-        await deleteSql.deleteParIn(data.stuid);
-    }
-
-    if (club != null) {
-        await updateSql.updateClub(data.stuid);
-    }
-
-
-    await deleteSql.deleteStudents(data);
+    await deleteSql.deleteParIn(data);
 
     res.redirect('/delete');
 });
