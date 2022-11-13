@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
     if (vars.type == 'student') {
         students.map((student) => {
             console.log(student.STUID);
-            if (vars.id === student.STUID && vars.password === student.SPW) {
+            if (Number(vars.id) === student.SNO && vars.password === student.SPW) {
                 console.log('login success!');
                 checkLogin = true;
                 whoAmI = 'student';
@@ -38,7 +38,6 @@ router.post('/', async (req, res) => {
         })
     }
     console.log(`whoAmI : ${whoAmI} and checkLogin : ${checkLogin}`);
-
     if (checkLogin && whoAmI === 'admin') {
         res.redirect('/delete');
     } else if (checkLogin && whoAmI === 'employee' || whoAmI === 'student') {
