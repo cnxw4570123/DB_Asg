@@ -7,19 +7,19 @@ router.get('/', async function (req, res) {
     //employee면 사번으로 부서정보랑 해당 사원 정보 조회
     //students면 학번으로 학과정보, 동아리 포함 학생 정보 조회
     let type = req.query.type;
-    let id = req.query.id;
+    let id = Number(req.query.id);
     console.log(id, type);
     if (type === 'employee') {
-        const employeeInfo = await selectSql.getEmployee(id);
+        const employee = await selectSql.getEmployeeById(id);
         res.render('select', {
             isEmployee: true,
             title: '직원 정보 테이블',
-            employeeInfo
+            employee
         })
 
     } else {
-        const students = await selectSql.getStudents(id);
-        const classInfo = await selectSql.getClassInfo(id);
+        const students = await selectSql.getStudentsById(id);
+        const classInfo = await selectSql.getClassInfoById(id);
         res.render('select', {
             isEmployee: false,
             title: '학생 정보 테이블',
@@ -29,6 +29,6 @@ router.get('/', async function (req, res) {
         })
     }
 
-})
+});
 
 module.exports = router;

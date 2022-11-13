@@ -11,18 +11,23 @@
         <td>Major</td>
         <td>CLUB ID</td>
     </tr>
-        {{#each student}}
-        <form method="get">
-    <tr>
-        <td>{{STUID}}</td>
-        <td>{{SPW}}</td>
-        <td>{{SNO}}</td>
-        <td>{{SNAME}}</td>
-        <td>{{SEMAIL}}</td>
-        <td>{{SPHNUM}}</td>
-        <td>{{MAJOR}}</td>
-        <td>{{CLUB_ID}}</td>
-    </tr>
-        </form>
-        {{/each}}
+    {{#each students}}
+    <form method="post" action="/delete">
+        <tr>
+            <td>{{STUID}}</td>
+            <td>{{SPW}}</td>
+            <td>{{SNO}}</td>
+            <td>{{SNAME}}</td>
+            <td>{{SEMAIL}}</td>
+            <td>{{SPHNUM}}</td>
+            <td>{{DNAME}}</td>
+            <td>{{CLNAME}}</td>
+            <td style="border: none; margin-left: 10px;">
+                <button style="margin-left: 10px;" name="delBtn" value="{{STUID}}">
+                    삭제
+                </button>
+            </td>
+        </tr>
+    </form>
+    {{/each}}
 </table>
