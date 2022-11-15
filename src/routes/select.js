@@ -22,15 +22,15 @@ const router = express.Router();
 router.get('/', async function (req, res) {
     // TODO
     // class 정보 불러오기
-    const classInfo =  await selectSql.getClassInfo();
+    const classInfo = await selectSql.getClassInfo();
     if (req.cookies.user) {
         // TODO
         // 불러온 class 정보 같이 넘겨주기
-        res.render('select', { 
+        res.render('select', {
             user: req.cookies.user,
             title: '수강신청',
             classInfo
-         });
+        });
     } else {
         res.render('/')
     }

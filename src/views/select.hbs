@@ -16,28 +16,22 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="select.css" />
-  <link
-    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <script>
-    const logout = () => {window.location.href="http://localhost:3000/logout"};
-    const move = () => {window.location.href="http://localhost:3000/sugang"};
+    const logout = () => { window.location.href = "http://localhost:3000/logout" };
+    const move = () => { window.location.href = "http://localhost:3000/sugang" };
+    const sugangBtn = 
   </script>
 </head>
 <div class="header">
   <div class="header-logo">
-    <div class="logo"><img
-        src="./img/inhaLogo.png"
-        alt="INHA UNIVERSITY"
-      /></div>
+    <div class="logo"><img src="./img/inhaLogo.png" alt="INHA UNIVERSITY" /></div>
     <span class="logo-text">수강신청</span>
   </div>
 
   <div class="header-info">
-    <span class="header-info_title">2021 교육과정 개편 관련 경과조치 안내 (<span
-        class="header-info_title_strong"
-      >2020 이전 학번 필수 참조</span>) -> 자세히보기</span>
+    <span class="header-info_title">2021 교육과정 개편 관련 경과조치 안내 (<span class="header-info_title_strong">2020 이전 학번 필수
+        참조</span>) -> 자세히보기</span>
   </div>
 </div>
 
@@ -45,7 +39,7 @@
   <div class="side">
     <div class="side-frame">
       <div class="side-frame_id">
-        <div class="userinfo">{{user}}</div>
+        <div class="userinfo">{{user.name}}</div>
         <button class="logout" onclick="logout()">Logout</button>
       </div>
     </div>
@@ -108,10 +102,10 @@
             <td class="main-top_table_body_third">{{EMPNAME}}</td>
             <td class="main-top_table_body_fourth">{{C_DNO}}-{{C_RNO}}</td>
             <td class="main-top_table_body_fifth">{{CLEFT}}</td>
-            <td><button value="{{CID}}" name="cid" style="width:100px;">수강신청</button></td>
+            <td><button value="{{CID}}" name="cid" style="width:100px; " onclick="">수강신청</button></td>
           </tr>
           {{/each}}
-        </table>        
+        </table>
         {{! 마지막 열에는 "수강신청" 이라는 버튼이 있어야 함 }}
         {{! 수강신청 버튼을 클릭하면 DB에 해당 결과가 반영되어야 함 }}
       </div>

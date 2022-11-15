@@ -29,7 +29,7 @@ router.use(expressSession({
 
 router.get('/', (req, res) => {
     if (req.cookies.user) {
-        res.render('main', { 'user': req.cookies.user });
+        res.render('main', { 'user': req.cookies.user.name });
     } else {
         res.render('login');
     }
@@ -53,7 +53,11 @@ router.post('/', async (req, res) => {
     users.map((user) => {
         if (Number(vars.id) === user.SNO && vars.password === user.SPW) {
             checkLogin = true;
-            whoAmI = user.SNAME;
+            // whoAmI = user.SNAME;
+            whoAmI = {
+                name: user.SNAME,
+                sno: user.SNO
+            };
         }
     })
 
@@ -66,8 +70,8 @@ router.post('/', async (req, res) => {
     } else {
         res.redirect('/');
     }
-    
-    
+
+
 
 })
 
