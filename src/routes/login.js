@@ -29,7 +29,7 @@ router.use(expressSession({
 
 router.get('/', (req, res) => {
     if (req.cookies.user) {
-        res.render('main', { 'user': req.cookies.user.name });
+        res.render('main', { 'user': req.cookies.user });
     } else {
         res.render('login');
     }

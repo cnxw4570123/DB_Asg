@@ -18,9 +18,15 @@
   <link rel="stylesheet" type="text/css" href="select.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <script>
+    console.log({{ user.sno }});
     const logout = () => { window.location.href = "http://localhost:3000/logout" };
     const move = () => { window.location.href = "http://localhost:3000/sugang" };
-    const sugangBtn = 
+    const sugangBtn = (formObj) => {
+      let sno = user.sno;
+      let cid = formObj.cid.value;
+      console.log(sno);
+      return false;
+    };
   </script>
 </head>
 <div class="header">
@@ -95,15 +101,17 @@
             <td></td>
           </tr>
           {{#each classInfo}}
-          <form action="/" method="post"></form>
-          <tr>
-            <td class="main-top_table_body_first">{{CID}}</td>
-            <td class="main-top_table_body_second">{{CNAME}}</td>
-            <td class="main-top_table_body_third">{{EMPNAME}}</td>
-            <td class="main-top_table_body_fourth">{{C_DNO}}-{{C_RNO}}</td>
-            <td class="main-top_table_body_fifth">{{CLEFT}}</td>
-            <td><button value="{{CID}}" name="cid" style="width:100px; " onclick="">수강신청</button></td>
-          </tr>
+          <form action="/" method="post" onsubmit="return sugangBtn(this)">
+            <tr>
+              <td class="main-top_table_body_first">{{CID}}</td>
+              <td class="main-top_table_body_second">{{CNAME}}</td>
+              <td class="main-top_table_body_third">{{EMPNAME}}</td>
+              <td class="main-top_table_body_fourth">{{C_DNO}}-{{C_RNO}}</td>
+              <td class="main-top_table_body_fifth">{{CLEFT}}</td>
+              <input type="hidden" name="cid" value="{{CID}}">
+              <td class="main-top_table_body_fifth"><input type="submit" value="수강신청"></td>
+            </tr>
+          </form>
           {{/each}}
         </table>
         {{! 마지막 열에는 "수강신청" 이라는 버튼이 있어야 함 }}
