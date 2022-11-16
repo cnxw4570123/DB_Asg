@@ -18,15 +18,8 @@
   <link rel="stylesheet" type="text/css" href="select.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <script>
-    console.log({{ user.sno }});
     const logout = () => { window.location.href = "http://localhost:3000/logout" };
     const move = () => { window.location.href = "http://localhost:3000/sugang" };
-    const sugangBtn = (formObj) => {
-      let sno = user.sno;
-      let cid = formObj.cid.value;
-      console.log(sno);
-      return false;
-    };
   </script>
 </head>
 <div class="header">
@@ -98,10 +91,10 @@
             <td class="main-top_table_head_third">교수명</td>
             <td class="main-top_table_head_fourth">강의실</td>
             <td class="main-top_table_head_fifth">여석</td>
-            <td></td>
+            <td class="main-top_table_head_fifth">신청</td>
           </tr>
           {{#each classInfo}}
-          <form action="/" method="post" onsubmit="return sugangBtn(this)">
+          <form action="/sugang" method="post">
             <tr>
               <td class="main-top_table_body_first">{{CID}}</td>
               <td class="main-top_table_body_second">{{CNAME}}</td>
@@ -116,6 +109,23 @@
         </table>
         {{! 마지막 열에는 "수강신청" 이라는 버튼이 있어야 함 }}
         {{! 수강신청 버튼을 클릭하면 DB에 해당 결과가 반영되어야 함 }}
+        <h1>{{title2}}</h1>
+        <table>
+          <tr>
+          <td>과목코드</td>
+          <td>과목명</td>
+          <td>교수명</td>
+          <td>강의실</td>
+          </tr>
+          {{#each participate_in}}
+          <tr>
+          <td>{{CID}}</td>
+          <td>{{CNAME}}</td>
+          <td>{{EMPNAME}}</td>
+          <td>{{C_DNO}}-{{C_RNO}}</td>
+          </tr>
+          {{/each}}
+        </table>
       </div>
     </div>
   </div>

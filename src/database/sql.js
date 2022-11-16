@@ -23,16 +23,20 @@ export const selectSql = {
 
     return rows
   },
-  getClassInfo: async (data) => {
+  getClassInfo: async () => {
     // 각 행에 대해서 변화하게 (#EACH로 받아오면 될 것 같긴함)
     const [rows] = await promisePool.query(`SELECT CID ,CNAME,EMPNAME, C_DNO, C_RNO, NUMOFPTCS - COUNT(*) AS 'CLEFT' FROM CLASS, PARTICIPATE_IN, EMPLOYEE WHERE PCID = CID AND PROFESSOR = EMPID GROUP BY PCID`)
+    return rows;
+  },
+  getParticipate_in: async(data)=>{
+    const [rows] = await promisePool.query(`SELECT CID, CNAME, EMPNAME, C_DNO, C_RNO FROM CLASS, PARTICIPATE_IN, EMPLOYEE WHERE PCID = CID AND EMPID = PROFESSOR AND PSTUID = ${Number(data.stuid)}`);
     return rows;
   }
 }
 
 export const insertSql = {
   insertClass: async(data) =>{
-    const result = await promisePool.query(`INSERT INTO PARTICIPATE_IN VALUES(${data.stuid},${data.cid})`);
+    const result = await promisePool.query(`INSERT INTO PARTICIPATE_IN VALUES(${Number(data.stuid)},"${data.cid}")`);
     return result;
   }
 }

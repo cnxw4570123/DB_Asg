@@ -11,9 +11,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 import express from "express";
 import { selectSql } from "../database/sql";
+import { insertSql } from "../database/sql";
 // TODO
 // sql import
 
@@ -23,12 +23,17 @@ router.get('/', async function (req, res) {
     // TODO
     // class 정보 불러오기
     const classInfo = await selectSql.getClassInfo();
+    const participate_in = await selectSql.getParticipate_in(req.cookies.user);
+    console.log('/sugang')
+
     if (req.cookies.user) {
         // TODO
         // 불러온 class 정보 같이 넘겨주기
         res.render('select', {
             user: req.cookies.user,
             title: '수강신청',
+            title2: '현재 수강상태',
+            participate_in,
             classInfo
         });
     } else {
@@ -37,4 +42,14 @@ router.get('/', async function (req, res) {
 
 });
 
+router.post('/', async function(req, res) {
+    console.log('수강');
+    const data = {
+        stuid: req.cookies.user.stuid,
+        cid: req.body.cid
+      }
+      console.log(data);
+      await insertSql.insertClass(data);
+      res.redirect('sugang');
+});
 module.exports = router;

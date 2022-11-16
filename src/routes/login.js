@@ -56,7 +56,7 @@ router.post('/', async (req, res) => {
             // whoAmI = user.SNAME;
             whoAmI = {
                 name: user.SNAME,
-                sno: user.SNO
+                stuid: user.STUID
             };
         }
     })
