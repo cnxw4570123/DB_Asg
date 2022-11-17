@@ -83,7 +83,7 @@
       <div class="main-top_table">
         {{! TODO }}
         {{! Database에서 class 데이터를 가져와서 테이블로 보여주기 }}
-        <h1>{{title}}</h1>
+        <span class="main-bottom_title">{{title}}</span>
         <table>
           <tr style="background-color: #0770bb;">
             <td class="main-top_table_head_first">과목코드</td>
@@ -102,31 +102,35 @@
               <td class="main-top_table_body_fourth">{{C_DNO}}-{{C_RNO}}</td>
               <td class="main-top_table_body_fifth">{{CLEFT}}</td>
               <input type="hidden" name="cid" value="{{CID}}">
-              <td class="main-top_table_body_fifth"><input type="submit" value="수강신청"></td>
+              <th class="main-top_table_body_sixth"><input type="submit" value="수강신청"></th>
             </tr>
           </form>
           {{/each}}
         </table>
+      </div>
         {{! 마지막 열에는 "수강신청" 이라는 버튼이 있어야 함 }}
         {{! 수강신청 버튼을 클릭하면 DB에 해당 결과가 반영되어야 함 }}
-        <h1>{{title2}}</h1>
+        <br>
+        <hr>
+        <div class="main-bottom">
+          <span class="main-bottom_title">{{title2}}</span>
         <table>
           <tr>
-          <td>과목코드</td>
-          <td>과목명</td>
-          <td>교수명</td>
-          <td>강의실</td>
+          <td class="main-bottom_table_head">과목코드</td>
+          <td class="main-bottom_table_head">과목명</td>
+          <td class="main-bottom_table_head">교수명</td>
+          <td class="main-bottom_table_head">강의실</td>
           </tr>
           {{#each participate_in}}
           <tr>
-          <td>{{CID}}</td>
-          <td>{{CNAME}}</td>
-          <td>{{EMPNAME}}</td>
-          <td>{{C_DNO}}-{{C_RNO}}</td>
+          <td class="main-bottom_table_body">{{CID}}</td>
+          <td class="main-bottom_table_body">{{CNAME}}</td>
+          <td class="main-bottom_table_body">{{EMPNAME}}</td>
+          <td class="main-bottom_table_body">{{C_DNO}}-{{C_RNO}}</td>
           </tr>
           {{/each}}
         </table>
-      </div>
+        </div>
     </div>
   </div>
 </div>

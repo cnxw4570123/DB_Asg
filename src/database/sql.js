@@ -23,7 +23,7 @@ export const selectSql = {
 
     return rows
   },
-  getClassInfo: async () => {
+  getClassInfo: async (data) => {
     // 각 행에 대해서 변화하게 (#EACH로 받아오면 될 것 같긴함)
     const [rows] = await promisePool.query(`SELECT CID ,CNAME,EMPNAME, C_DNO, C_RNO, NUMOFPTCS - COUNT(*) AS 'CLEFT' FROM CLASS, PARTICIPATE_IN, EMPLOYEE WHERE PCID = CID AND PROFESSOR = EMPID GROUP BY PCID`)
     return rows;
