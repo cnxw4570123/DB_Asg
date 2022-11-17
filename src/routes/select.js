@@ -22,7 +22,7 @@ const router = express.Router();
 router.get('/', async function (req, res) {
     // TODO
     // class 정보 불러오기
-    const classInfo = await selectSql.getClassInfo();
+    const classInfo = await selectSql.getClassInfo(req.cookies.user);
     const participate_in = await selectSql.getParticipate_in(req.cookies.user);
     console.log('/sugang')
 
