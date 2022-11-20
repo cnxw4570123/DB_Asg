@@ -14,42 +14,61 @@
 import express from "express";
 import { selectSql } from "../database/sql";
 import { insertSql } from "../database/sql";
+import { updateSql } from "../database/sql";
 // TODO
 // sql import
 
 const router = express.Router();
-
+let isfirst = true;
 router.get('/', async function (req, res) {
     // TODO
     // class 정보 불러오기
-    const classInfo = await selectSql.getClassInfo(req.cookies.user);
     const participate_in = await selectSql.getParticipate_in(req.cookies.user);
-    console.log('/sugang')
+    let classInfo = await selectSql.getClassInfo(req.cookies.user);
+    // const ptcsNum = await selectSql.getPtcsNum();
+    // console.log(ptcsNum);
+    // console.log(classInfo);
+    // console.log('/sugang')
 
     if (req.cookies.user) {
         // TODO
         // 불러온 class 정보 같이 넘겨주기
-        res.render('select', {
-            user: req.cookies.user,
-            title: '수강신청',
-            title2: '현재 수강상태',
-            participate_in,
-            classInfo
-        });
+        if (classInfo.length == 0 && isfirst) {
+            classInfo = await selectSql.getFirstInfo();
+            console.log(classInfo);
+            res.render('select', {
+                user: req.cookies.user,
+                title: '수강신청',
+                title2: '현재 수강상태',
+                participate_in,
+                classInfo
+            });
+        } else {
+            res.render('select', {
+                user: req.cookies.user,
+                title: '수강신청',
+                title2: '현재 수강상태',
+                participate_in,
+                classInfo
+            });
+        }
+
     } else {
         res.render('/')
     }
 
 });
 
-router.post('/', async function(req, res) {
+router.post('/', async function (req, res) {
     console.log('수강');
     const data = {
         stuid: req.cookies.user.stuid,
         cid: req.body.cid
-      }
-      console.log(data);
-      await insertSql.insertClass(data);
-      res.redirect('sugang');
+    }
+    isfirst = false;
+    console.log(data);
+    await insertSql.insertClass(data);
+    await updateSql.updateClass(data);
+    res.redirect('sugang');
 });
 module.exports = router;

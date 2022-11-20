@@ -21,22 +21,37 @@ export const selectSql = {
   getUsers: async () => {
     const [rows] = await promisePool.query(`select * from students`);
 
-    return rows
+    return rows;
+  },
+  getPtcsNum: async (cid) => {
+    const [result] = await promisePool.query(`SELECT PCID, COUNT(*) AS PTCSNUM FROM PARTICIPATE_IN GROUP BY PCID`);
+    return result;
+  },
+  getFirstInfo: async () => {
+    const [rows] = await promisePool.query(`SELECT CID ,CNAME, EMPNAME, C_DNO, C_RNO, NUMOFPTCS AS 'CLEFT' FROM CLASS, EMPLOYEE WHERE PROFESSOR = EMPID`);
+    return rows;
   },
   getClassInfo: async (data) => {
     // 각 행에 대해서 변화하게 (#EACH로 받아오면 될 것 같긴함)
-    const [rows] = await promisePool.query(`SELECT CID ,CNAME,EMPNAME, C_DNO, C_RNO, NUMOFPTCS - COUNT(*) AS 'CLEFT' FROM CLASS, PARTICIPATE_IN, EMPLOYEE WHERE PCID = CID AND PROFESSOR = EMPID AND PCID NOT IN (SELECT PCID FROM PARTICIPATE_IN WHERE PSTUID = ${Number(data.stuid)}) GROUP BY PCID`)
+    const [rows] = await promisePool.query(`SELECT DISTINCT CID ,CNAME, EMPNAME, C_DNO, C_RNO, NUMOFPTCS AS 'CLEFT' FROM CLASS, PARTICIPATE_IN, EMPLOYEE WHERE PROFESSOR = EMPID AND CID NOT IN (SELECT PCID FROM PARTICIPATE_IN WHERE PSTUID = ${Number(data.stuid)})`)
     return rows;
   },
-  getParticipate_in: async(data)=>{
-    const [rows] = await promisePool.query(`SELECT CID, CNAME, EMPNAME, C_DNO, C_RNO FROM CLASS, PARTICIPATE_IN, EMPLOYEE WHERE PCID = CID AND EMPID = PROFESSOR AND PSTUID = ${Number(data.stuid)}`);
+  getParticipate_in: async (data) => {
+    const [rows] = await promisePool.query(`SELECT CID, CNAME, EMPNAME, C_DNO, C_RNO, NUMOFPTCS AS 'CLEFT' FROM CLASS, PARTICIPATE_IN, EMPLOYEE WHERE PCID = CID AND EMPID = PROFESSOR AND PSTUID = ${Number(data.stuid)}`);
     return rows;
   }
 }
 
 export const insertSql = {
-  insertClass: async(data) =>{
+  insertClass: async (data) => {
     const result = await promisePool.query(`INSERT INTO PARTICIPATE_IN VALUES(${Number(data.stuid)},"${data.cid}")`);
+    return result;
+  }
+}
+
+export const updateSql = {
+  updateClass: async (data) => {
+    const result = await promisePool.query(`UPDATE CLASS SET NUMOFPTCS = NUMOFPTCS - 1 WHERE CID = "${data.cid}"`);
     return result;
   }
 }

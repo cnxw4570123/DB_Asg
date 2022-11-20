@@ -21,6 +21,10 @@
     const logout = () => { window.location.href = "http://localhost:3000/logout" };
     const move = () => { window.location.href = "http://localhost:3000/sugang" };
   </script>
+  <script type="module">
+    const ptcsNum = (cid) => await getPtcsNum(cid);
+
+  </script>
 </head>
 <div class="header">
   <div class="header-logo">
@@ -108,29 +112,32 @@
           {{/each}}
         </table>
       </div>
-        {{! 마지막 열에는 "수강신청" 이라는 버튼이 있어야 함 }}
-        {{! 수강신청 버튼을 클릭하면 DB에 해당 결과가 반영되어야 함 }}
-        <br>
-        <hr>
-        <div class="main-bottom">
-          <span class="main-bottom_title">{{title2}}</span>
+      {{! 마지막 열에는 "수강신청" 이라는 버튼이 있어야 함 }}
+      {{! 수강신청 버튼을 클릭하면 DB에 해당 결과가 반영되어야 함 }}
+      <br>
+      <hr>
+      <div class="main-bottom">
+        <span class="main-bottom_title">{{title2}}</span>
         <table>
           <tr>
-          <td class="main-bottom_table_head">과목코드</td>
-          <td class="main-bottom_table_head">과목명</td>
-          <td class="main-bottom_table_head">교수명</td>
-          <td class="main-bottom_table_head">강의실</td>
+            <td class="main-bottom_table_head">과목코드</td>
+            <td class="main-bottom_table_head">과목명</td>
+            <td class="main-bottom_table_head">교수명</td>
+            <td class="main-bottom_table_head">강의실</td>
+            <td class="main-bottom_table_head">여석</td>
+
           </tr>
           {{#each participate_in}}
           <tr>
-          <td class="main-bottom_table_body">{{CID}}</td>
-          <td class="main-bottom_table_body">{{CNAME}}</td>
-          <td class="main-bottom_table_body">{{EMPNAME}}</td>
-          <td class="main-bottom_table_body">{{C_DNO}}-{{C_RNO}}</td>
+            <td class="main-bottom_table_body">{{CID}}</td>
+            <td class="main-bottom_table_body">{{CNAME}}</td>
+            <td class="main-bottom_table_body">{{EMPNAME}}</td>
+            <td class="main-bottom_table_body">{{C_DNO}}-{{C_RNO}}</td>
+            <td class="main-bottom_table_body">{{CLEFT}}</td>
           </tr>
           {{/each}}
         </table>
-        </div>
+      </div>
     </div>
   </div>
 </div>
